@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeX Levitators - Exam Session</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            margin: auto;
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            overflow: auto;
+            background: linear-gradient(315deg, rgba(101,0,94,1) 3%, rgba(60,132,206,1) 38%, rgba(48,238,226,1) 68%, rgba(255,25,25,1) 98%);
+            animation: gradient 15s ease infinite;
+            background-size: 400% 400%;
+            background-attachment: fixed;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        @keyframes gradient {
+            0% {
+                background-position: 0% 0%;
+            }
+            50% {
+                background-position: 100% 100%;
+            }
+            100% {
+                background-position: 0% 0%;
+            }
+
+        }
+
+        .container {
+            text-align: center;
+            background-color: #333;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 800px; /* Adjust the maximum width as per your design */
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .header h2 {
+            margin: 0;
+            color: #fff;
+        }
+
+        .timer {
+            font-size: 20px;
+            background: #444;
+            padding: 10px;
+            border-radius: 4px;
+            color: #fff;
+            margin-bottom: 20px;
+        }
+
+        .info {
+            text-align: left;
+            color: #fff;
+        }
+
+        .info-box {
+            background-color: rgba(0, 0, 0, 0.3);
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+        }
+
+        .info-box p {
+            margin: 5px 0;
+        }
+
+        .end-session {
+            margin-top: 20px;
+        }
+
+        .end-session button {
+            padding: 10px 20px;
+            background-color: #5cb85c;
+            border: none;
+            border-radius: 4px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .end-session button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h2>Exam Session</h2>
+        </div>
+        <div class="timer" id="timer">3:15:00</div>
+        <div class="info">
+            <div class="info-box" id="invigilator-info">
+                <p>UserId: <span id="userId"></span></p>
+                <p>Password: <span id="password"></span></p>
+            </div>
+            <div class="info-box" id="paper-uvc-info">
+                <p>Paper UVC 1: <span id="uvc1"></span></p>
+                <p>Paper UVC 2: <span id="uvc2"></span></p>
+                <p>Paper UVC 3: <span id="uvc3"></span></p>
+            </div>
+            <div class="info-box" id="exam-info">
+                <p>Exam: <span id="exam"></span></p>
+                <p>Date: <span id="date"></span></p>
+                <p>Start Time: <span id="startTime"></span></p>
+                <p>End Time: <span id="endTime"></span></p>
+            </div>
+        </div>
+        <div class="end-session">
+            <button id="endSessionBtn" class="transparent-btn" disabled>End Session</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Retrieve URL parameters from login.html
+            const urlParams = new URLSearchParams(window.location.search);
+            const userId = urlParams.get('userId') || 'Unknown';
+            const password = urlParams.get('password') || 'Unknown';
+            const uvc1 = urlParams.get('uvc1') || 'Unknown';
+            const uvc2 = urlParams.get('uvc2') || 'Unknown';
+            const uvc3 = urlParams.get('uvc3') || 'Unknown';
+
+            // Display Invigilator's UserId and Password
+            document.getElementById('userId').textContent = userId;
+            document.getElementById('password').textContent = password;
+
+            // Display Paper UVCs
+            document.getElementById('uvc1').textContent = uvc1;
+            document.getElementById('uvc2').textContent = uvc2;
+            document.getElementById('uvc3').textContent = uvc3;
+
+            // Retrieve exam information from ExamInfo.html
+            const examInfo = {
+                exam: 'NEET-UG', // Replace with actual fetched exam data
+                date: '2025-05-05', // Replace with actual fetched exam data
+                startTime: '14:00', // Replace with actual fetched exam data
+                endTime: '17:00' // Replace with actual fetched exam data
+            };
+
+            // Display Exam information
+            document.getElementById('exam').textContent = examInfo.exam;
+            document.getElementById('date').textContent = examInfo.date;
+            document.getElementById('startTime').textContent = examInfo.startTime;
+            document.getElementById('endTime').textContent = examInfo.endTime;
+
+            // Timer Logic
+            let timeLeft = 3 * 60 * 60 + 15 * 60; // 3 hours 15 minutes in seconds
+            const timerElement = document.getElementById('timer');
+            const endSessionBtn = document.getElementById('endSessionBtn');
+
+            function updateTimer() {
+                let hours = Math.floor(timeLeft / 3600);
+                let minutes = Math.floor((timeLeft % 3600) / 60);
+                let seconds = timeLeft % 60;
+
+                hours = hours < 10 ? '0' + hours : hours;
+                minutes = minutes < 10 ? '0' + minutes : minutes;
+                seconds = seconds < 10 ? '0' + seconds : seconds;
+
+                timerElement.textContent = `${hours}:${minutes}:${seconds}`;
+                
+                if (timeLeft > 0) {
+                    timeLeft--;
+                } else {
+                    clearInterval(timerInterval);
+                    endSessionBtn.disabled = false; // Enable the button when session ends
+                    endSessionBtn.classList.remove('transparent-btn'); // Remove the transparent class
+                }
+            }
+
+            const timerInterval = setInterval(updateTimer, 1000);
+
+            // End Session Button Functionality
+            endSessionBtn.addEventListener('click', () => {
+                clearInterval(timerInterval); // Stop the timer
+                alert('Session Ended!');
+                // Implement any session end logic here, like redirecting to another page
+            });
+
+            // Prevent Back Navigation
+            history.pushState(null, null, window.location.href);
+            window.addEventListener('popstate', function () {
+                history.pushState(null, null, window.location.href);
+            });
+        });
+    </script>
+    <script>
+        // Disable right-click context menu
+        document.addEventListener('contextmenu', function (event) {
+            event.preventDefault();
+        });
+    </script>
+    <script>
+        // Disable text selection using JavaScript
+        document.addEventListener('selectstart', function (e) {
+            e.preventDefault();
+        });
+    </script>
+</body>
+</html>
+

@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fill in Details</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Global styles */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f9c78c;
+        }
+
+        /* Navbar styles */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #272626;
+            padding: 10px 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+        }
+
+        .navbar .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar ul li {
+            margin: 0 15px;
+        }
+
+        .navbar ul li a {
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .navbar ul li a:hover {
+            color: #f78d4a;
+        }
+
+        .navbar .auth-buttons {
+            margin-left: auto;
+        }
+
+        /* Sidebar toggle button */
+        .sidebar-toggle-btn {
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: #fff;
+            cursor: pointer;
+            display: none;
+        }
+
+        /* Media query for smaller screens */
+        @media (max-width: 768px) {
+            .navbar ul {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background-color: #333;
+                z-index: 1;
+                /* Ensure it's above other content */
+            }
+
+            .navbar ul li {
+                text-align: center;
+                margin: 10px 0;
+            }
+
+            .navbar ul li a {
+                color: #fff;
+                padding: 10px;
+            }
+
+            .navbar .toggle-btn {
+                display: block;
+            }
+
+            .sidebar-toggle-btn {
+                display: block;
+                position: absolute;
+                top: 12px;
+                left: 20px;
+                z-index: 2;
+                /* Ensure it's above other content */
+            }
+
+            .navbar.contracted {
+                width: calc(100% - 250px);
+                /* Adjust width for contracted state */
+                margin-left: 250px;
+                /* Adjust margin for sidebar */
+            }
+        }
+
+        .studi {
+            color: #f78d4a;
+        }
+
+        .find {
+            color: #ffffff;
+        }
+
+        .form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            max-width: 350px;
+            padding: 20px;
+            border-radius: 20px;
+            position: relative;
+            background-color: #1a1a1a;
+            color: #ff9100;
+            border: 1px solid #333;
+            margin-top: 60px;
+            /* Adjusted for fixed navbar */
+        }
+
+        .title {
+            font-size: 28px;
+            font-weight: 600;
+            letter-spacing: -1px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            padding-left: 30px;
+            color: #ffffff;
+        }
+
+        .title::before {
+            width: 18px;
+            height: 18px;
+        }
+
+        .title::after {
+            width: 18px;
+            height: 18px;
+            animation: pulse 1s linear infinite;
+        }
+
+        .title::before,
+        .title::after {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            border-radius: 50%;
+            left: 0px;
+            background-color: #ffb700;
+        }
+
+        .message,
+        .signin {
+            font-size: 14.5px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .signin {
+            text-align: center;
+        }
+
+        .signin a:hover {
+            text-decoration: underline royalblue;
+        }
+
+        .signin a {
+            color: #ffffff;
+        }
+
+        .flex {
+            display: flex;
+            width: 100%;
+            gap: 6px;
+        }
+
+        .form label {
+            position: relative;
+        }
+
+        .form label .input {
+            background-color: #333;
+            color: #fff;
+            width: 100%;
+            padding: 20px 5px 5px 10px;
+            outline: 0;
+            border: 1px solid rgba(105, 105, 105, 0.397);
+            border-radius: 10px;
+        }
+
+        .form label .input+span {
+            color: rgba(255, 255, 255, 0.5);
+            position: absolute;
+            left: 10px;
+            top: 0px;
+            font-size: 0.9em;
+            cursor: text;
+            transition: 0.3s ease;
+        }
+
+        .form label .input:placeholder-shown+span {
+            top: 12.5px;
+            font-size: 0.9em;
+        }
+
+        .form label .input:focus+span,
+        .form label .input:valid+span {
+            color: #ff9900;
+            top: 0px;
+            font-size: 0.7em;
+            font-weight: 600;
+        }
+
+        .input {
+            font-size: medium;
+        }
+
+        .submit {
+            border: none;
+            outline: none;
+            padding: 10px;
+            border-radius: 10px;
+            color: #fff;
+            font-size: 16px;
+            transform: 0.3s ease;
+            background-color: #ffae00;
+        }
+
+        .submit:hover {
+            background-color: #00bfff96;
+        }
+
+        @keyframes pulse {
+            from {
+                transform: scale(0.9);
+                opacity: 1;
+            }
+
+            to {
+                transform: scale(1.8);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navbar" id="navbar">
+        <div class="logo"><span class="studi">CodeX</span><span class="find">Levitators</span></div>
+        <button id="sidebar-toggle" class="sidebar-toggle-btn">
+            <i class="fas fa-bars"></i>
+        </button>
+        <ul>
+            <!-- <li><a href="#">HOME</a></li>
+            <li><a href="#">ABOUT</a></li>
+            <li><a href="#">ARTICLES</a></li>
+            <li><a href="#" id="ai-assistant-btn">HELP</a></li> -->
+        </ul>
+        <div class="auth-buttons">
+            <!-- Add your authentication buttons or other content here -->
+        </div>
+    </div>
+
+    <form class="form" id="registerForm" action="captcha.html">
+        <p class="title">Register</p>
+        <p class="message">Register now to get your username</p>
+        <div class="flex">
+            <label>
+                <input class="input" type="text" placeholder="" required name="firstname" aria-label="Firstname">
+                <span>Firstname</span>
+            </label>
+
+            <label>
+                <input class="input" type="text" placeholder="" required name="lastname" aria-label="Lastname">
+                <span>Lastname</span>
+            </label>
+        </div>
+
+        <label>
+            <input class="input" type="email" placeholder="" required name="email" aria-label="Email">
+            <span>Email</span>
+        </label>
+
+        <label>
+            <input class="input" type="password" placeholder="" required name="password" aria-label="Password">
+            <span>Password</span>
+        </label>
+        <label>
+            <input class="input" type="password" placeholder="" required name="confirm-password"
+                aria-label="Confirm password">
+            <span>Confirm password</span>
+        </label>
+        <label>
+            <input class="input" type="text" placeholder="" required name="aadhar-number" aria-label="Aadhar Number">
+            <span>Aadhar Number</span>
+        </label>
+        <label>
+            <input class="input" type="text" placeholder="" required name="contact-number" aria-label="Contact Number">
+            <span>Contact Number</span>
+        </label>
+
+        <!-- New Row for Invigilator ID Card Submission -->
+        <label>
+            <input class="input" type="file" placeholder="" required name="invigilator-id-card"
+                aria-label="Invigilator ID Card">
+            <span>ID Card Submission</span>
+        </label>
+
+        <!-- Dropdown Row for City Selection -->
+        <label>
+            <select class="input" required name="city" aria-label="City">
+                <option value="" disabled selected>Select City</option>
+                <!-- List of Indian cities -->
+                <option value="Mumbai">Mumbai</option>
+                <option value="Delhi">Delhi</option>
+                <option value="Bangalore">Bangalore</option>
+                <option value="Hyderabad">Hyderabad</option>
+                <option value="Ahmedabad">Ahmedabad</option>
+                <option value="Chennai">Chennai</option>
+                <option value="Kolkata">Kolkata</option>
+                <option value="Pune">Pune</option>
+                <option value="Jaipur">Jaipur</option>
+                <option value="Surat">Surat</option>
+                <option value="Lucknow">Lucknow</option>
+                <option value="Kanpur">Kanpur</option>
+                <option value="Nagpur">Nagpur</option>
+                <option value="Indore">Indore</option>
+                <option value="Thane">Thane</option>
+                <option value="Bhopal">Bhopal</option>
+                <option value="Visakhapatnam">Visakhapatnam</option>
+                <option value="Patna">Patna</option>
+                <option value="Vadodara">Vadodara</option>
+                <option value="Ghaziabad">Ghaziabad</option>
+                <option value="Ludhiana">Ludhiana</option>
+                <option value="Agra">Agra</option>
+                <option value="Nashik">Nashik</option>
+                <option value="Faridabad">Faridabad</option>
+                <option value="Meerut">Meerut</option>
+                <option value="Rajkot">Rajkot</option>
+                <option value="Kalyan">Kalyan</option>
+                <option value="Vasai-Virar">Vasai-Virar</option>
+                <option value="Varanasi">Varanasi</option>
+                <option value="Srinagar">Srinagar</option>
+                <option value="Aurangabad">Aurangabad</option>
+                <option value="Dhanbad">Dhanbad</option>
+                <option value="Amritsar">Amritsar</option>
+                <option value="Navi Mumbai">Navi Mumbai</option>
+                <option value="Allahabad">Allahabad</option>
+                <option value="Howrah">Howrah</option>
+                <option value="Ranchi">Ranchi</option>
+                <option value="Gwalior">Gwalior</option>
+                <option value="Jabalpur">Jabalpur</option>
+                <option value="Coimbatore">Coimbatore</option>
+                <option value="Vijayawada">Vijayawada</option>
+                <option value="Jodhpur">Jodhpur</option>
+                <option value="Madurai">Madurai</option>
+                <option value="Raipur">Raipur</option>
+                <option value="Kota">Kota</option>
+                <option value="Guwahati">Guwahati</option>
+                <option value="Chandigarh">Chandigarh</option>
+                <option value="Solapur">Solapur</option>
+                <option value="Hubli">Hubli</option>
+                <option value="Mysore">Mysore</option>
+                <option value="Tiruchirappalli">Tiruchirappalli</option>
+                <option value="Bareilly">Bareilly</option>
+                <option value="Aligarh">Aligarh</option>
+                <option value="Tiruppur">Tiruppur</option>
+                <option value="Gurgaon">Gurgaon</option>
+                <option value="Thiruvananthapuram">Thiruvananthapuram</option>
+                <option value="Moradabad">Moradabad</option>
+                <option value="Jalandhar">Jalandhar</option>
+                <option value="Bhubaneswar">Bhubaneswar</option>
+                <option value="Salem">Salem</option>
+                <option value="Warangal">Warangal</option>
+                <option value="Mira-Bhayandar">Mira-Bhayandar</option>
+                <option value="Guntur">Guntur</option>
+                <option value="Bhiwandi">Bhiwandi</option>
+                <option value="Saharanpur">Saharanpur</option>
+                <option value="Gorakhpur">Gorakhpur</option>
+                <option value="Bikaner">Bikaner</option>
+                <option value="Amravati">Amravati</option>
+                <option value="Noida">Noida</option>
+                <option value="Jamshedpur">Jamshedpur</option>
+                <option value="Bhilai">Bhilai</option>
+                <option value="Cuttack">Cuttack</option>
+                <option value="Firozabad">Firozabad</option>
+                <option value="Kochi">Kochi</option>
+                <option value="Bhavnagar">Bhavnagar</option>
+                <option value="Dehradun">Dehradun</option>
+                <option value="Durgapur">Durgapur</option>
+                <option value="Asansol">Asansol</option>
+                <option value="Nanded">Nanded</option>
+                <option value="Kolhapur">Kolhapur</option>
+                <option value="Ajmer">Ajmer</option>
+                <option value="Gulbarga">Gulbarga</option>
+                <option value="Loni">Loni</option>
+                <option value="Udaipur">Udaipur</option>
+                <option value="Jhansi">Jhansi</option>
+                <option value="Ulhasnagar">Ulhasnagar</option>
+                <option value="Tirunelveli">Tirunelveli</option>
+                <option value="Muzaffarnagar">Muzaffarnagar</option>
+                <option value="Belgaum">Belgaum</option>
+                <option value="Jammu">Jammu</option>
+                <option value="Mangalore">Mangalore</option>
+                <option value="Ambattur">Ambattur</option>
+                <option value="Tirupati">Tirupati</option>
+                <option value="Malegaon">Malegaon</option>
+                <option value="Gaya">Gaya</option>
+                <option value="Jalgaon">Jalgaon</option>
+                <option value="Ujjain">Ujjain</option>
+                <option value="Maheshtala">Maheshtala</option>
+                <option value="Davanagere">Davanagere</option>
+                <option value="Kozhikode">Kozhikode</option>
+                <option value="Akola">Akola</option>
+                <option value="Kurnool">Kurnool</option>
+                <option value="Bokaro">Bokaro</option>
+                <option value="South Dumdum">South Dumdum</option>
+                <option value="Bellary">Bellary</option>
+                <option value="Patiala">Patiala</option>
+                <option value="Gopalpur">Gopalpur</option>
+                <option value="Agartala">Agartala</option>
+                <option value="Bhagalpur">Bhagalpur</option>
+                <option value="Muzaffarpur">Muzaffarpur</option>
+                <option value="Bhatpara">Bhatpara</option>
+                <option value="Panihati">Panihati</option>
+                <option value="Latur">Latur</option>
+                <option value="Dhule">Dhule</option>
+                <option value="Rohtak">Rohtak</option>
+                <option value="Korba">Korba</option>
+                <option value="Bhilwara">Bhilwara</option>
+                <option value="Brahmapur">Brahmapur</option>
+                <option value="Muzaffarnagar">Muzaffarnagar</option>
+                <option value="Ahmednagar">Ahmednagar</option>
+                <option value="Mathura">Mathura</option>
+                <option value="Kollam">Kollam</option>
+                <option value="Avadi">Avadi</option>
+                <option value="Kadapa">Kadapa</option>
+                <option value="Kamarhati">Kamarhati</option>
+                <option value="Bilaspur">Bilaspur</option>
+                <option value="Shahjahanpur">Shahjahanpur</option>
+                <option value="Bijapur">Bijapur</option>
+                <option value="Rampur">Rampur</option>
+                <option value="Shivamogga">Shivamogga</option>
+            </select>
+        </label>
+        <label>
+            <select class="input" required name="designation" aria-label="Designation">
+                <option value="" disabled selected>Select Designation</option>
+                <option value="Head Invigilator">Head Invigilator</option>
+                <option value="Assistant Invigilator">Assistant Invigilator</option>
+                <option value="System Manager">System Manager</option>
+            </select>
+        </label>
+
+        <button type="submit" class="submit">Submit</button>
+    </form>
+
+    <script>
+        // JavaScript for handling navbar toggle button
+        const sidebarToggleBtn = document.getElementById('sidebar-toggle');
+        const sidebar = document.getElementById('sidebar');
+        const navbar = document.getElementById('navbar');
+
+        sidebarToggleBtn.addEventListener('click', () => {
+            sidebar.classList.toggle('sidebar-visible');
+            navbar.classList.toggle('contracted');
+            sidebarToggleBtn.classList.toggle('shifted');
+        });
+
+        // JavaScript for handling AI Assistant button
+        const aiAssistantBtn = document.getElementById('ai-assistant-btn');
+        const chatContainer = document.getElementById('chat-container'); // Ensure this element exists in your HTML
+
+        aiAssistantBtn.addEventListener('click', () => {
+            chatContainer.style.display = chatContainer.style.display === 'block' ? 'none' : 'block';
+        });
+
+        // JavaScript to handle form submission and redirect to captcha.html
+        const registerForm = document.getElementById('registerForm');
+        registerForm.addEventListener('submit', (event) => {
+            event.preventDefault(); // Prevent the default form submission
+
+            // Perform any additional validation if needed
+
+            // Redirect to captcha.html
+            window.location.href = 'captcha.html';
+        });
+    </script>
+    <script>
+        // Disable back button press on certain pages
+        history.pushState(null, null, location.href);
+        window.onpopstate = function () {
+            history.go(1);
+        };
+
+    </script>
+    <script>
+        // Disable right-click context menu
+        document.addEventListener('contextmenu', function (event) {
+            event.preventDefault();
+        });
+    </script>
+    <script>
+        // Disable text selection using JavaScript
+        document.addEventListener('selectstart', function (e) {
+            e.preventDefault();
+        });
+    </script>
+        
+</body>
+
+</html>

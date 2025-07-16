@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeX Levitators - Biometric Verification</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="biometric.css">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #212121;
+            color: #cccccc;
+            overflow: hidden; /* Ensure no scrollbars */
+            background: linear-gradient(315deg, rgba(101, 0, 94, 1) 3%, rgba(60, 132, 206, 1) 38%, rgba(48, 238, 226, 1) 68%, rgba(255, 25, 25, 1) 98%);
+            animation: gradient 15s ease infinite;
+            background-size: 400% 400%;
+            background-attachment: fixed;
+        }
+
+        @keyframes gradient {
+            0% {
+                background-position: 0% 0%;
+            }
+
+            50% {
+                background-position: 100% 100%;
+            }
+
+            100% {
+                background-position: 0% 0%;
+            }
+        }
+
+        .biometric-container {
+            background-color: #333;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .biometric-header h2 {
+            margin: 0 0 20px;
+        }
+
+        .biometric-instructions {
+            margin-bottom: 20px;
+        }
+
+        .biometric-button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            background-color: #5cb85c;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 10px;
+        }
+
+        .biometric-button:disabled {
+            background-color: #777;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="biometric-container">
+        <div class="biometric-header">
+            <h2>Biometric Verification</h2>
+        </div>
+        <div class="biometric-instructions">
+            <p>Please choose a verification method:</p>
+        </div>
+        <button class="biometric-button" id="face-verification">Face Verification</button>
+        <button class="biometric-button" id="fingerprint-verification">Fingerprint Verification</button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.getElementById('face-verification').addEventListener('click', function () {
+                window.location.href = 'face.html';
+            });
+
+            document.getElementById('fingerprint-verification').addEventListener('click', function () {
+                window.location.href = 'fingerprint.html';
+            });
+        });
+    </script>
+    <script>
+       // Disable back button press (partially)
+history.pushState(null, null, document.URL);
+window.addEventListener('popstate', function () {
+    history.pushState(null, null, document.URL);
+});
+
+    </script>
+
+</body>
+
+</html>

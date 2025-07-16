@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Successful</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #212121;
+            color: #cccccc;
+            background-image: linear-gradient(135deg, #ecafaf, #ca38e0, #f2ebbc, #ecafaf, #ca38e0, #ecafaf, #ca38e0, #f2ebbc);
+            background-size: 400% 400%;
+            animation: gradient-flow 10s ease-in-out infinite;
+        }
+
+        .success-container {
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2rem;
+            color: #0a5518;
+            margin-top: 20px;
+        }
+
+        .circle-loader {
+            position: relative;
+            margin: 0 auto;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 5px solid #0a5518;
+            border-top-color: transparent;
+            animation: spin 1s linear infinite;
+        }
+
+        .checkmark {
+            display: none;
+        }
+
+        .circle-loader.complete .checkmark {
+            display: block;
+        }
+
+        .checkmark.draw:after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 22px;
+            height: 52px;
+            border-right: 5px solid #0a5518;
+            border-bottom: 5px solid #0a5518;
+            transform: translate(-50%, -50%) rotate(45deg);
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .circle-loader.complete {
+            border-color: #0a5518;
+            animation: none;
+        }
+
+        .verify-button {
+            display: none;
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 1rem;
+            color: #ffffff;
+            background-color: #0a5518;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+
+        .verify-button.show {
+            display: inline-block;
+            opacity: 1;
+        }
+
+        @keyframes gradient-flow {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            100% {
+                background-position: 100% 50%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="success-container">
+        <div class="circle-loader">
+            <div class="checkmark draw"></div>
+        </div>
+        <h1>Login Successful!</h1>
+        <button class="verify-button"><b>Verify Biometrics</b></button>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const circleLoader = document.querySelector('.circle-loader');
+            const verifyButton = document.querySelector('.verify-button');
+
+            setTimeout(() => {
+                circleLoader.classList.add('complete');
+            }, 1000); // 1 second delay to complete the animation
+
+            setTimeout(() => {
+                verifyButton.classList.add('show');
+                verifyButton.onclick = () => {
+                    window.location.href = 'load2.html'; // Link to load2.html
+                };
+            }, 2000); // 1 second delay after the animation is complete to show the button
+        });
+    </script>
+    <script>
+        window.history.pushState({}, '', '');
+
+        window.addEventListener('popstate', function (event) {
+            event.preventDefault();
+            alert('Error: You cannot go back to the previous tab.');
+            window.history.pushState({}, '', '');
+            window.location.href = '#'; // Add this line to prevent the browser from going back
+        });
+    </script>
+    <script>
+        // Disable back button press on certain pages
+        history.pushState(null, null, location.href);
+        window.onpopstate = function () {
+            history.go(1);
+        };
+
+    </script>
+    <script>
+        // Disable right-click context menu
+        document.addEventListener('contextmenu', function (event) {
+            event.preventDefault();
+        });
+    </script>
+    <script>
+        // Disable text selection using JavaScript
+        document.addEventListener('selectstart', function (e) {
+            e.preventDefault();
+        });
+    </script>
+</body>
+
+</html>

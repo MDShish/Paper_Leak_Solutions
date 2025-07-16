@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
+    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeXLevitators</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="Web.css">
+    <script>
+        async function generateExamPapers() {
+            const response = await fetch('/generate-papers');
+            const papers = await response.json();
+            console.log(papers);
+            alert('Exam papers generated successfully!');
+        }
+    </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        @media (max-width: 768px) {
+            .navbar ul {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                width: 100%;
+                background-color: #333;
+            }
+
+            .navbar ul li {
+                text-align: center;
+            }
+
+            .navbar ul li a {
+                color: #fff;
+                padding: 10px;
+            }
+
+            .navbar .toggle-btn {
+                display: block;
+            }
+        }
+
+        .new-tag {
+            font-size: 0.8em;
+            padding: 2px 6px;
+        }
+
+
+        .full-screen-row {
+            background-color: #ffffff;
+            /* Default background color for light mode */
+        }
+
+        .dark-mode .full-screen-row {
+            background-color: #333;
+            /* Background color for dark mode */
+        }
+
+        /* CSS for the Register button */
+        .register-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #ffffff;
+            /* Text color */
+            background-color: #808080;
+            /* Grey background color */
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .register-btn:hover {
+            background-color: #000000;
+            /* Black background color on hover */
+            color: #ffffff;
+            /* White text color on hover */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navbar" id="navbar">
+        <div class="logo"><span class="studi">CodeX</span><span class="find">Levitators</span></div>
+        <ul>
+            <li><a href="#"> </a></li>
+            <li><a href="#"> </a></li>
+            <li><a href="#"> </a></li>
+            <li><a href="#"> </a></li>
+            <li><a href="#"> </a></li>
+            <li><a href="#"> </a></li>
+            <li><a href="#"> </a></li>
+            <li><a href="#"> </a></li>
+            <li><a href="#"> </a></li>
+            <li><a href="#"> </a></li>
+            <li><a href="#"> </a></li>
+            <li><a href="#"> </a></li>
+            <li><a href="#"> </a></li>
+            <li><a href="#"> </a></li>
+            <li><a href="#"> </a></li>
+            <li><a href="#"> </a></li>
+            <li><a href="#"> </a></li>
+            <li><a href="#"> </a></li>
+            <li><a href="#"> </a></li>
+            <li><a href="#"> </a></li>
+            <li><a href="#"> </a></li>
+            <li><a href="#"> </a></li>
+            <li><a href="#"> </a></li>
+            <li><a href="#"> </a></li>
+            <li><a href="#"> </a></li>
+
+
+            <li><a href="#">HOME</a></li>
+            <li><a href="CodeXBlogs.html">BLOGS</a></li>
+            <li><a href="CodeXIdeas.html">IDEAS</a></li>
+            <li><a href="aiDoubt.html">AI Assistant</a></li>
+            <!-- <button id="dark-mode-toggle" class="dark-mode-toggle-btn" >
+                <i id="dark-mode-icon" class="fas fa-moon"></i>
+              </button> -->
+
+            <a href="#" class="home-icon"><i class="fas fa-moon"></i></a>
+        </ul>
+        <div class="auth-buttons">
+        </div>
+    </div>
+    <button class="openbtn sidebar-toggle-btn" onclick="toggleNav()">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <div id="mySidebar" class="sidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="toggleNav()"></a>
+        <!-- HTML for the dark mode toggle button -->
+        <button id="dark-mode-toggle" class="dark-mode-toggle-btn">
+            <i id="dark-mode-icon" class="fas fa-moon"></i>
+        </button>
+
+        <a href="Registration.html">Head Inviligator</a>
+        <hr>
+        <a href="Registration.html">Assistant Inviligator</a>
+        <hr>
+        <a href="Registration.html">System Manager</a>
+        <hr>
+        <a href="/">Biometric Verification Status</a>
+    </div>
+    <div id="content-container">
+    </div>
+    <div class="chat-container" id="chat-container">
+        <div class="chat-header">AI Assistant</div>
+        <div class="chat-body" id="chat-body">
+            <div>How can I help you?</div>
+        </div>
+        <div class="chat-input">
+            <input type="text" id="chat-input" placeholder="Type your question here...">
+            <button onclick="sendMessage()">Send</button>
+            <link rel="stylesheet" href="https://google.com">
+        </div>
+    </div>
+
+    <div class="homepage">
+        <h1 class="welcome-title">
+            Welcome to&nbsp;<span style="color: orange;">CodeX</span>Levitators
+        </h1>
+
+
+        <div class="fade-in-words">
+            <p id="animated-text">CodeX Levitators takes flight! We're tackling educational inequality caused by paper
+                leaks (think NEET & UGC-NET 2024). Our project, "Ensuring Fair and Secure Exams with Generative AI &
+                Sensors," aims to level the playing field. With this innovative approach, we'll create a secure exam
+                process, reducing leaks and giving every student a fair shot at success.
+            </p>
+        </div>
+
+
+
+        <a href="Register.html" class="register-btn"><b>Register now</b></a>
+        <a href="load1.html" class="get-started-btn"><b>Get Started</b></a>
+    </div>
+    <div class="rectangles">
+        <div class="rectangle">
+            <i class="fas fa-book-open fa-3x"></i>
+            <h2>Sensor Technology for Exam Environment Monitoring</h2>
+            <p>Biometric Authentication, Environmental Sensors & Real-Time Monitoring</p>
+            <button onclick="sensorTech()">Implementation Overview</button>
+        </div>
+
+        <div class="rectangle">
+            <i class="fas fa-globe fa-3x"></i>
+            <h2>Generative AI for Dynamic Question Paper Generation</h2>
+            <p>Algorithmically Generated Questions, Multiple Versions & Adaptive Testing</p>
+
+            <button onclick="generateExamPapers()">Generate Exam Papers</button>
+
+<script>
+  function generateExamPapers() {
+    window.open('https://mediafiles.botpress.cloud/67966561-173a-49cd-aeb2-f2c5d8f24cfc/webchat/bot.html', '_blank');
+  }
+</script>
+        </div>
+
+        <div class="rectangle">
+            <i class="fas fa-laptop fa-3x"></i>
+            <h2>Blockchain for Secure Distribution and Integrity</h2>
+            <p>Blockchain-Based Distribution & Immutable Records</p>
+            <button onclick="secureDistribution()">Setting-up Strategy</button>
+        </div>
+
+        <div class="rectangle">
+            <i class="fas fa-pen fa-3x"></i>
+            <h2>Strict Access Control and Surveillance</h2>
+            <p>Limited Access & Enhanced Surveillance</p>
+            <button onclick="accessControl()">System Manager Roles</button>
+        </div>
+        <div id="overlay"></div>
+        <script>
+            function toggleMenu(menuId) {
+                const menu = document.getElementById(menuId);
+                menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+            }
+
+            const sidebarToggleBtn = document.getElementById('sidebar-toggle');
+            const sidebar = document.getElementById('sidebar');
+            const navbar = document.getElementById('navbar');
+
+            sidebarToggleBtn.addEventListener('click', () => {
+                sidebar.classList.toggle('sidebar-visible');
+                navbar.classList.toggle('contracted');
+                sidebarToggleBtn.classList.toggle('shifted');
+            });
+
+            const aiAssistantBtn = document.getElementById('ai-assistant-btn');
+            const chatContainer = document.getElementById('chat-container');
+
+            aiAssistantBtn.addEventListener('click', () => {
+                chatContainer.style.display = chatContainer.style.display === 'block' ? 'none' : 'block';
+            });
+
+            function sendMessage() {
+                const chatInput = document.getElementById('chat-input');
+                const chatBody = document.getElementById('chat-body');
+                const message = document.createElement('div');
+                message.textContent = chatInput.value;
+                chatBody.appendChild(message);
+                chatInput.value = '';
+            }
+        </script>
+        <script>
+            // JavaScript for handling scroll event
+            window.addEventListener('scroll', function () {
+                // Calculate scroll position percentage
+                const scrollPercentage = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
+
+                // Adjust animation speed based on scroll position
+                const animationSpeed = 10 + scrollPercentage * 20; // Adjust these values as needed
+
+                // Update animation duration dynamically
+                document.styleSheets[0].cssRules[13].style.animationDuration = `${animationSpeed}s`;
+                document.styleSheets[0].cssRules[23].style.animationDuration = `${animationSpeed}s`;
+            });
+
+        </script>
+
+        <!-- New full-screen rows -->
+        <!-- Full-screen rows -->
+        <div class="full-screen-row">
+            <div class="content">
+                <!-- Content for the first full-screen row -->
+                <h2>Pilot Testing</h2>
+                <p> Start with a pilot test of the generative AI and sensor technology in a few selected exam centers to
+                    evaluate their effectiveness and identify any potential issues..</p>
+            </div>
+        </div>
+        <div class="full-screen-row">
+            <div class="content">
+                <!-- Content for the second full-screen row -->
+                <h2>Training and Awareness</h2>
+                <p>Train exam center staff on the new technologies and protocols. Create awareness among candidates
+                    about the new measures to deter any attempts at malpractice</p>
+            </div>
+        </div>
+        <div class="full-screen-row"">
+            <div class=" content">
+            <!-- Content for the third full-screen row -->
+            <h2>Scalability</h2>
+            <p>Gradually scale the implementation to cover more exam centers, ensuring that all technological and
+                logistical challenges are addressed.</p>
+        </div>
+    </div>
+    <div class="full-screen-row" ">
+            <div class=" content">
+        <!-- Content for the fourth full-screen row -->
+        <h2>Continuous Monitoring and Improvement</h2>
+        <p>Continuously monitor the effectiveness of the measures and use the data to improve and refine the
+            systems.</p>
+    </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const paragraph = document.getElementById('animated-text');
+            const words = paragraph.textContent.split(' ');
+
+            let html = '';
+            for (const word of words) {
+                html += `<span>${word}</span> `;
+            }
+            paragraph.innerHTML = html.trim();
+
+            const spans = paragraph.querySelectorAll('span');
+            let delay = 0;
+
+            spans.forEach((span, index) => {
+                span.style.animationDelay = `${delay}s`;
+                delay += 0.1; // Adjust delay between words as needed
+            });
+
+            setTimeout(function () {
+                paragraph.parentElement.classList.add('active');
+            }, 500); // Adjust delay to start animation as needed
+        });
+
+    </script>
+    <script>
+        // Get the toggle button and icon elements
+        const darkModeToggle = document.getElementById('dark-mode-toggle');
+        const darkModeIcon = document.getElementById('dark-mode-icon');
+
+        // Add event listener to toggle dark mode
+        darkModeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            darkModeIcon.classList.toggle('fa-sun');
+            darkModeIcon.classList.toggle('fa-moon');
+        });
+    </script>
+    <script>
+        function sendMessage() {
+            var userInput = $('#user-input').val();
+            $.ajax({
+                url: '/chatbot',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({ message: userInput }),
+                success: function (response) {
+                    $('#messages').append('<div>' + response.response + '</div>');
+                }
+            });
+        }
+    </script>
+    <script>
+        /* Toggle the sidebar */
+        function toggleNav() {
+            var sidebar = document.getElementById("mySidebar");
+            var mainContent = document.getElementById("main");
+            var sidebarToggle = document.querySelector(".sidebar-toggle");
+
+            // Toggle sidebar open class
+            sidebar.classList.toggle("sidebar-open");
+
+            // Adjust main content margin left when sidebar opens
+            if (sidebar.classList.contains("sidebar-open")) {
+                mainContent.style.marginLeft = "250px"; // Adjust according to sidebar width
+                sidebar.style.left = "0"; // Bring sidebar into view
+                sidebarToggle.style.left = "270px"; // Move toggle button to the right
+            } else {
+                mainContent.style.marginLeft = "0";
+                sidebar.style.left = "-250px"; // Slide sidebar off-screen
+                sidebarToggle.style.left = "20px"; // Reset toggle button position
+            }
+        }
+    </script>
+    <script>
+        function toggleNav() {
+            var sidebar = document.getElementById("mySidebar");
+            var contentContainer = document.getElementById("content-container");
+            sidebar.classList.toggle("sidebar-open");
+
+            if (sidebar.classList.contains("sidebar-open")) {
+                contentContainer.style.transform = "translateX(250px)";
+            } else {
+                contentContainer.style.transform = "translateX(0)";
+            }
+        }
+
+    </script>
+    <script>
+        function toggleNav() {
+            var sidebar = document.getElementById("mySidebar");
+            var contentContainer = document.getElementById("content-container");
+            var overlay = document.getElementById("overlay");
+
+            sidebar.classList.toggle("sidebar-open");
+
+            if (sidebar.classList.contains("sidebar-open")) {
+                contentContainer.style.transform = "translateX(250px)";
+                overlay.style.display = "block"; // Show the overlay
+            } else {
+                contentContainer.style.transform = "translateX(0)";
+                overlay.style.display = "none"; // Hide the overlay
+            }
+        }
+
+    </script>
+    <script>
+        document.addEventListener('contextmenu', function (e) {
+            e.preventDefault();
+            alert("Right-click is disabled on this website.");
+        });
+    </script>
+    <style>
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0);
+            z-index: 9999;
+            pointer-events: none;
+        }
+    </style>
+    <div class="overlay"></div>
+    // Disable back button press (partially)
+    history.pushState(null, null, document.URL);
+    window.addEventListener('popstate', function () {
+    history.pushState(null, null, document.URL);
+    });
+
+</body>
+
+</html>

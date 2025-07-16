@@ -1,0 +1,1351 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+    color: #333;
+    transition: margin 0.3s ease-in-out;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 10px 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    transition: width 0.3s ease-in-out, margin-left 0.3s ease-in-out;
+}
+
+
+.navbar.contracted {
+    width: calc(100% - 250px);
+    margin-left: 250px;
+}
+
+body.contracted {
+    margin-left: 250px;
+}
+
+.navbar .logo {
+    font-size: 24px;
+    font-weight: bold;
+    padding-left: 50px;
+}
+
+.navbar ul {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar ul li {
+    margin: 0 15px;
+}
+
+.navbar ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.navbar ul li a:hover {
+    color: #f78d4a;
+}
+
+.navbar .auth-buttons a {
+    margin-left: 15px;
+    text-decoration: none;
+    color: #f78d4a;
+    font-weight: bold;
+}
+
+@media (max-width: 768px) {
+    .navbar ul {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background-color: #333;
+    }
+
+    .navbar ul li {
+        text-align: center;
+    }
+
+    .navbar ul li a {
+        color: #fff;
+        padding: 10px;
+    }
+
+    .navbar .toggle-btn {
+        display: block;
+    }
+}
+
+.navbar.contracted .logo,
+.navbar.contracted ul li a {
+    color: transparent;
+}
+
+.studi {
+    color: #f78d4a;
+}
+
+.find {
+    color: #000;
+}
+
+/* CSS for dark mode */
+body.dark-mode {
+    background-color: #333;
+    color: #fff;
+}
+
+.chat-container {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 300px;
+    background: #4199d4;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.chat-header {
+    background: #000000;
+    color: #ffffff;
+    padding: 10px;
+    text-align: center;
+}
+
+.chat-body {
+    padding: 10px;
+    height: 200px;
+    overflow-y: auto;
+}
+
+.chat-input {
+    padding: 10px;
+    border-top: 1px solid #0b0b0b;
+}
+
+.chat-input input {
+    width: calc(100% - 50px);
+    padding: 5px;
+}
+
+.chat-input button {
+    padding: 5px 10px;
+    background: #f78d4a;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+
+.sub-menu {
+    display: none;
+    padding-left: 30px;
+}
+
+hr {
+    background-color: #3a3838;
+    height: 1px;
+    border: none;
+    margin: 5px 0;
+}
+
+.sub-menu a {
+    font-size: 16px;
+    padding-left: 30px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.sub-menu a:last-child {
+    margin-bottom: 0;
+}
+
+.sidebar-toggle-btn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #333;
+    cursor: pointer;
+    display: block;
+    position: absolute;
+    top: 12px;
+    left: 20px;
+    z-index: 1000 !important;
+    padding: 5px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: left 0.3s ease-in-out;
+}
+
+.sidebar-toggle-btn.shifted {
+    left: 270px;
+}
+
+/* Light Mode */
+body.light-mode .full-screen-row {
+    background-color: #ffffff;
+    color: #333;
+}
+
+/* Dark Mode */
+body.dark-mode .full-screen-row {
+    background-color: #000000;
+    color: #f78d4a;
+}
+
+.homepage {
+    padding: 50px;
+    text-align: center;
+    background-color: #fff;
+    margin: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.homepage h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.homepage h1 .studi {
+    color: #f78d4a;
+}
+
+.homepage h1 .find {
+    color: #000;
+}
+
+.homepage h1 span:first-child {
+    color: #000;
+}
+
+.homepage p {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #555;
+    margin-bottom: 30px;
+}
+
+
+button {
+    padding: 10px 20px;
+    background-color: #000;
+    /* Initial black color */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    /* Add transition for smooth effect */
+}
+
+button:hover {
+    animation: slide-color 2s infinite;
+    /* Add animation on hover */
+}
+
+@keyframes slide-color {
+    0% {
+        background-color: #000;
+        /* Start with black */
+    }
+
+    50% {
+        background-color: #f78d4a;
+        /* Slide to pink */
+    }
+
+    100% {
+        background-color: #000;
+        /* End with black */
+    }
+}
+
+.homepage button:hover {
+    background-color: #e6007e;
+}
+
+.homepage h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.homepage h1 .studi {
+    color: #f78d4a;
+}
+
+.homepage h1 .find {
+    color: #000;
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+}
+
+.rectangles {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+.rectangle {
+    width: calc(50% - 40px);
+    max-width: 400px;
+    margin: 20px;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    text-align: center;
+}
+
+.rectangle h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.rectangle p {
+    font-size: 16px;
+    color: #555;
+    line-height: 1.6;
+}
+
+body {
+    position: relative;
+    overflow-x: hidden;
+    /* Ensure no horizontal scrolling */
+    margin: 0;
+    padding: 0;
+}
+
+body::before,
+body::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 500px;
+    /* Increase the width */
+    height: 500px;
+    /* Increase the height */
+    border-radius: 50%;
+    background-color: transparent;
+    z-index: -1;
+    animation-duration: 10s;
+    /* Animation duration */
+    animation-timing-function: linear;
+    /* Animation timing function */
+    animation-iteration-count: infinite;
+    /* Animation repeat infinitely */
+}
+
+body::before {
+    left: -250px;
+    /* Initial position on the left */
+    animation-name: pink-circle-animation;
+}
+
+body::after {
+    right: -250px;
+    /* Initial position on the right */
+    animation-name: black-circle-animation;
+}
+
+@keyframes pink-circle-animation {
+    0% {
+        background-color: #f78d4a;
+        border: #000000;
+        ;
+        /* Pink */
+        transform: translateY(-50%) translateX(-50%) scale(0);
+    }
+
+    50% {
+        transform: translateY(-50%) translateX(-50%) scale(1.5);
+        /* Increase scale */
+    }
+
+    100% {
+        background-color: #f78d4a;
+        /* Pink */
+        transform: translateY(-50%) translateX(100%) scale(0);
+    }
+}
+
+@keyframes black-circle-animation {
+    0% {
+        background-color: #000;
+        /* Black */
+        transform: translateY(-50%) translateX(50%) scale(0);
+    }
+
+    50% {
+        transform: translateY(-50%) translateX(50%) scale(1.5);
+        /* Increase scale */
+    }
+
+    100% {
+        background-color: #000;
+        /* Black */
+        transform: translateY(-50%) translateX(-100%) scale(0);
+    }
+}
+
+/* Add this to your existing CSS */
+body::before,
+body::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+body::before {
+    z-index: -1;
+}
+
+.sphere {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 1px solid #fff;
+    background-color: #f78d4a;
+    /* Pink */
+    animation: move 5s infinite;
+}
+
+.sphere.black {
+    background-color: #000;
+    /* Black */
+}
+
+.circle {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    background-color: transparent;
+    animation: move 2s infinite;
+}
+
+.circle.black {
+    border-color: #000;
+    /* Black */
+}
+
+@keyframes move {
+    0% {
+        transform: translate(0, 0);
+    }
+
+    100% {
+        transform: translate(random(-100, 100)px, random(-100, 100)px);
+    }
+}
+
+/* Add this to your existing CSS */
+body::before,
+body::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+body::before {
+    z-index: -1;
+}
+
+.ball {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 1px solid #fff;
+    background-color: #f78d4a;
+    /* Pink */
+    animation: move 5s infinite;
+}
+
+.ball.black {
+    background-color: #000;
+    /* Black */
+}
+
+@keyframes move {
+    0% {
+        transform: translate(0, 0);
+    }
+
+    100% {
+        transform: translate(random(-100, 100)px, random(-100, 100)px);
+    }
+}
+
+.full-screen-row {
+    width: 95%;
+    padding: 50px 0;
+    box-sizing: border-box;
+    text-align: center;
+    margin: 30px 0;
+    /* Add this line */
+}
+
+.full-screen-row .content {
+    max-width: 30000px;
+    margin: 0 auto;
+}
+
+.full-screen-row h2 {
+    font-size: 36px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.full-screen-row p {
+    font-size: 18px;
+    color: #000000;
+    line-height: 1.6;
+}
+
+/* Add the following code to your CSS file */
+.balls-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.ball {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #f78d4a;
+    /* Pink */
+    animation: jump 2s infinite;
+}
+
+.ball-1 {
+    animation-delay: 0s;
+}
+
+.ball-2 {
+    animation-delay: 0.2s;
+}
+
+.ball-3 {
+    animation-delay: 0.4s;
+}
+
+.ball-4 {
+    animation-delay: 0.6s;
+}
+
+.ball-5 {
+    animation-delay: 0.8s;
+}
+
+.ball-6 {
+    animation-delay: 1s;
+}
+
+.ball-7 {
+    animation-delay: 1.2s;
+}
+
+.ball-8 {
+    animation-delay: 1.4s;
+}
+
+.ball-9 {
+    animation-delay: 1.6s;
+}
+
+.ball-10 {
+    animation-delay: 1.8s;
+}
+
+@keyframes jump {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    50% {
+        transform: translate(-50%, -50%) scale(1.5);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+.fade-in-words {
+    opacity: 0;
+}
+
+.fade-in-words.active {
+    opacity: 1;
+}
+
+.fade-in-words p span {
+    opacity: 0;
+    animation: fadeInWord 2s forwards;
+}
+
+@keyframes fadeInWord {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+.rectangle {
+    width: calc(50% - 40px);
+    max-width: 400px;
+    margin: 20px;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    text-align: center;
+    transition: transform 0.3s ease-in-out;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    /* Add this line */
+}
+
+.rectangle:hover {
+    transform: scale(1.05);
+}
+
+
+
+@keyframes backgroundAnimation {
+    0% {
+        background-color: #f3b58e;
+    }
+
+    50% {
+        background-color: #ffffff;
+    }
+
+    100% {
+        background-color: #f3b58e;
+    }
+}
+
+body {
+    /* Add your existing body styles here */
+    animation: backgroundAnimation 10s ease-in-out infinite;
+}
+
+.pink-row {
+    background-color: #f78d4a;
+}
+
+.navbar .auth-buttons a:last-child {
+    margin-left: 10px;
+    /* or remove this rule altogether */
+}
+
+.navbar .auth-buttons {
+    max-width: 200px;
+}
+
+.home-icon i {
+    color: #f78d4a;
+    /* Pink color */
+    font-size: 24px;
+    /* Adjust size as needed */
+    transition: color 0.3s;
+}
+
+.home-icon:hover i {
+    color: #f78d4a;
+    /* Slightly darker pink on hover */
+}
+
+.rectangle:hover {
+    border: 2px solid #000000;
+    /* Pink border on hover */
+    box-shadow: 0 0 10px #f78d4a;
+    /* Add a subtle shadow effect */
+}
+
+.homepage button:hover {
+    border: 2px solid #ffffff;
+    box-shadow: 0 0 10px #f78d4a;
+}
+
+.homepage button {
+    padding: 10px 20px;
+    background-color: #f78d4a;
+    /* Initial pink color */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    /* Add transition for smooth effect */
+}
+
+.homepage button:hover {
+    animation: slide-color 2s infinite;
+    /* Add animation on hover */
+}
+
+@keyframes slide-color {
+    0% {
+        background-color: #f78d4a;
+        /* Start with pink */
+    }
+
+    50% {
+        background-color: #000;
+        /* Slide to black */
+    }
+
+    100% {
+        background-color: #f78d4a;
+        /* End with pink */
+    }
+}
+
+#ai-assistant-btn {
+    text-shadow: 0 0 10px #f78d4a;
+}
+
+/* Add dark mode styles */
+body.dark-mode {
+    background-color: #333;
+    color: #f78d4a;
+}
+
+.dark-mode .navbar {
+    background-color: #444;
+    color: #fff;
+}
+
+.dark-mode .sidebar {
+    background-color: #444;
+    color: #fff;
+}
+
+.dark-mode .homepage {
+    background-color: #333;
+    color: #fff;
+}
+
+.dark-mode .rectangle {
+    background-color: #444;
+    color: #fff;
+}
+
+.dark-mode .full-screen-row {
+    background-color: #000000;
+}
+
+/* Update icon color on dark mode toggle */
+.dark-mode #dark-mode-icon {
+    color: #fff;
+}
+
+.dark-mode .homepage,
+.dark-mode .rectangle,
+.dark-mode .full-screen-row .content,
+.dark-mode .sidebar,
+.dark-mode .navbar,
+.dark-mode .chat-container {
+    color: #fff;
+}
+
+.dark-mode h1,
+.dark-mode h2,
+.dark-mode p {
+    color: #fff;
+    /* Set text color to white for headings and paragraphs */
+}
+
+.dark-mode .find {
+    color: #fff;
+    /* Set text color to white */
+}
+
+.dark-mode .homepage h1 span.find {
+    color: #fff;
+    /* Set text color to white */
+}
+
+.dark-mode .homepage h1 span:first-child {
+    color: #fff;
+    /* Set text color to white */
+}
+
+.dark-mode .sphere.black {
+    background-color: #fff;
+}
+
+.dark-mode .navbar ul li a {
+    color: #fff;
+    /* Set text color to white */
+}
+
+.dark-mode .navbar .auth-buttons a {
+    color: #fff;
+    /* Set text color to white */
+}
+
+.dark-mode .navbar .home-icon i {
+    color: #fff;
+    /* Set icon color to white */
+}
+
+.navbar ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.navbar ul li a:hover,
+.navbar ul li a:active {
+    color: #f78d4a;
+}
+
+.sidebar-toggle-btn {
+    background-color: #ffffff;
+}
+
+.sidebar-toggle-btn {
+    max-width: 40px;
+}
+
+.full-screen-row {
+    transition: background-color 0.3s ease-in-out;
+}
+
+.full-screen-row:hover {
+    background-color: #ffffff;
+    animation: slide-color 2s infinite;
+}
+
+.full-screen-row:hover .content {
+    color: #fff;
+    /* Set text color to white on hover */
+}
+
+@keyframes slide-color {
+    0% {
+        background-color: #f78d4a;
+    }
+
+    50% {
+        background-color: #f78d4a;
+    }
+
+    100% {
+        background-color: #f78d4a;
+    }
+}
+
+.dark-mode .full-screen-row .content {
+    color: #fff;
+    /* Set text color to white in dark mode */
+}
+
+.full-screen-row {
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    border-radius: 10px;
+    /* Add border-radius */
+}
+
+.full-screen-row {
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    border-radius: 10px;
+    /* Add border-radius */
+}
+
+.full-screen-row:first-child {
+    border-top: none;
+    border-radius: 10px 10px 0 0;
+    /* Add border-radius for the first row */
+}
+
+.full-screen-row:last-child {
+    border-bottom: none;
+    border-radius: 0 0 10px 10px;
+    /* Add border-radius for the last row */
+}
+
+.full-screen-row:first-child {
+    border-top: none;
+    border-radius: 10px 10px 0 0;
+    /* Add border-radius for the first row */
+}
+
+.full-screen-row:last-child {
+    border-bottom: none;
+    border-radius: 0 0 10px 10px;
+    /* Add border-radius for the last row */
+}
+
+.full-screen-row {
+    border-top: 1px solid #2f2f2f;
+    border-bottom: 1px solid #2f2f2f;
+    border-radius: 10px;
+    /* Add border-radius */
+}
+
+.full-screen-row:first-child {
+    border-top: none;
+    border-radius: 10px 10px 0 0;
+    /* Add border-radius for the first row */
+}
+
+.full-screen-row:last-child {
+    border-bottom: none;
+    border-radius: 0 0 10px 10px;
+    /* Add border-radius for the last row */
+}
+
+.dark-mode .full-screen-row:nth-child(2) .content,
+.dark-mode .full-screen-row:nth-child(4) .content {
+    color: #000;
+    /* Set text color to black in dark mode */
+}
+
+.dark-mode .full-screen-row:nth-child(2) .content,
+.dark-mode .full-screen-row:nth-child(4) .content {
+    color: #000;
+    /* Set text color to black in dark mode */
+}
+
+.dark-mode .sidebar {
+    background-color: #000000;
+}
+
+.dark-mode .full-screen-row:nth-child(2) .content,
+.dark-mode .full-screen-row:nth-child(4) .content {
+    background-color: #000000;
+}
+
+.dark-mode .navbar .home-icon i {
+    display: none;
+}
+
+.navbar .home-icon i {
+    display: none;
+}
+
+.dark-mode .navbar .home-icon i {
+    display: block;
+}
+
+.ai-assistant-container {
+    position: relative;
+}
+
+
+.orange-sparkle {
+    position: absolute;
+    top: 50%;
+    right: -10px;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #ffffff;
+    /* Pink */
+    animation: move 5s infinite;
+}
+
+.dark-mode #sidebar {
+    color: #fff;
+    /* Change text color to white */
+}
+
+.dark-mode #sidebar a {
+    color: #fff;
+    /* Change link text color to white */
+}
+
+.dark-mode #sidebar a:hover {
+    color: #ccc;
+    /* Change link hover text color to a lighter shade */
+}
+
+.full-screen-row {
+    border: 1px solid #000;
+}
+
+.dark-mode .full-screen-row .content {
+    color: #000;
+}
+
+.dark-mode .full-screen-row {
+    color: #000000;
+}
+
+.navbar.contracted.auth-buttons {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.sidebar {
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    top: 0;
+    left: -250px;
+    /* Start off-screen */
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+    z-index: 1000;
+    /* Ensure it's above other content */
+}
+
+/* Sidebar links */
+.sidebar a {
+    padding: 10px 15px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+/* On hover, style sidebar links */
+.sidebar a:hover {
+    color: #f1f1f1;
+}
+
+/* Button to close the sidebar */
+.sidebar .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+    color: #ffffff;
+    /* Ensure close button is visible */
+}
+
+.sidebar-toggle {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background-color: #4CAF50;
+    /* Green background */
+    border: none;
+    color: white;
+    /* White text */
+    padding: 15px 20px;
+    /* Padding */
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    /* Font size */
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 12px;
+    /* Rounded corners */
+    transition: left 0.5s;
+    z-index: 1000;
+    /* Ensure it's above other content */
+}
+
+.sidebar-toggle i {
+    font-size: 1.5rem;
+    /* Adjust icon size */
+    color: white;
+    /* Adjust icon color */
+}
+
+
+/* Adjust button position when sidebar is open */
+.sidebar-open .sidebar-toggle {
+    left: 270px;
+    /* Adjust the left position to match sidebar width */
+}
+
+/* Page content */
+#main {
+    transition: margin-left 0.5s;
+    /* Add transition for content movement */
+    padding: 20px;
+    margin-left: 0;
+    /* Ensure initial position */
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -250px;
+    /* adjust according to your sidebar width */
+    width: 250px;
+    height: 100vh;
+    background-color: #f0f0f0;
+    transition: left 0.5s;
+}
+
+.sidebar-open {
+    left: 0;
+}
+
+/* Add these styles to your existing CSS file */
+body {
+    overflow-x: hidden;
+    /* Prevent horizontal scrolling */
+}
+
+#content-container {
+    transition: transform 0.3s ease;
+}
+
+/* Optional: Adjust the width of the sidebar */
+.sidebar {
+    width: 250px;
+    position: fixed;
+    top: 0;
+    left: -250px;
+    height: 100%;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.3s;
+    padding-top: 60px;
+}
+
+.sidebar-open {
+    left: 0;
+}
+
+body {
+    overflow-x: hidden;
+    /* Prevent horizontal scrolling */
+}
+
+#content-container {
+    transition: transform 0.3s ease;
+    position: relative;
+    /* Ensure the overlay is positioned correctly */
+}
+
+#overlay {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Sit on top of the page content */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Black background with opacity */
+    z-index: 1;
+    /* Ensure it's on top */
+    pointer-events: none;
+    /* Allow clicks to pass through */
+}
+
+.sidebar-open+#overlay {
+    display: block;
+    /* Show the overlay when the sidebar is open */
+}
+
+.sidebar {
+    width: 250px;
+    position: fixed;
+    top: 0;
+    left: -250px;
+    height: 100%;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.3s;
+    padding-top: 60px;
+    z-index: 2;
+    /* Ensure the sidebar is above the overlay */
+}
+
+.sidebar-open {
+    left: 0;
+}
+
+.get-started-btn {
+    background-color: #f78d4a;
+    /* Green */
+    color: #ffffff;
+    padding: 10px 20px;
+    border: rgb(0, 0, 0);
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.get-started-btn:hover {
+    background-color: #4CAF50
+        /* Darker green on hover */
+}
+
+.watermark {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    opacity: 0.5;
+    font-size: 20px;
+    color: red;
+    pointer-events: none;
+    z-index: 10000;
+}
+
+body {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+
+.get-started-btn {
+    text-decoration: none;
+}
+
+/* Use CSS Grid for layout */
+.container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-gap: 20px;
+}
+
+/* Use CSS animations and transitions */
+.button {
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #474646;
+}
+
+/* Use CSS variables */
+:root {
+    --primary-color: #474646;
+    --secondary-color: #f4ae83;
+}
+
+.header {
+    background-color: var(--primary-color);
+}
+
+.button {
+    background-color: var(--secondary-color);
+}
+
+/* Use CSS filters and blend modes */
+.image {
+    filter: brightness(0.8);
+}
+
+.image:hover {
+    filter: brightness(1);
+}
+
+/* Use CSS media queries */
+@media (max-width: 600px) {
+    .container {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ... your existing styles ... */
+
+.welcome-title {
+    /* ... your existing title styles ... */
+    display: inline-flex;
+    /* Allow elements to sit side-by-side */
+    align-items: center;
+    /* Vertically align the tag and text */
+}
+
+.new-tag {
+    background-color: #f78d4a;
+    /* Initial pink color */
+    color: white;
+    padding: 3px 8px;
+    border-radius: 5px;
+    font-size: 0.8em;
+    margin-right: 10px;
+    /* Space between tag and title */
+    animation: color-change 4s linear infinite;
+    /* Adjust duration as needed */
+}
+
+*/
+/* ... your existing styles ... */
+
+.welcome-title {
+    /* ... your existing title styles ... */
+    display: inline-flex;
+    align-items: center;
+}
+
+.new-tag {
+    background-color: #f78d4a;
+    color: white;
+    padding: 2px 6px;
+    /* Reduced padding for smaller size */
+    border-radius: 5px;
+    font-size: 0.6em;
+    /* Smaller font size */
+    margin-right: 8px;
+    /* Adjusted spacing */
+    animation: color-change 4s linear infinite;
+}
+
+/* ... rest of your CSS ... */

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeX Levitators - Face Verification</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="biometric.css">
+    <link rel="stylesheet" href="transition.css">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #212121;
+            color: #cccccc;
+        }
+
+        .biometric-container {
+            background-color: #333;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .biometric-header h2 {
+            margin: 0 0 20px;
+        }
+
+        .face-scanner {
+            margin: 20px auto;
+            width: 320px;
+            height: 240px;
+            background-color: #222;
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .biometric-button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            background-color: #5cb85c;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .biometric-button:disabled {
+            background-color: #777;
+            cursor: not-allowed;
+        }
+    </style>
+    
+</head>
+
+<body>
+    <div class="biometric-container">
+        <div class="biometric-header">
+            <h2>Face Verification</h2>
+        </div>
+        <div class="biometric-instructions">
+            <p>Please look at the camera to verify your identity.</p>
+        </div>
+        <div class="face-scanner">
+            <video id="video" autoplay></video>
+        </div>
+        <button class="biometric-button" id="start-face-verification">Start Face Verification</button>
+        <div id="biometric-status" style="margin-top: 20px;"></div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const video = document.getElementById('video');
+            const startFaceVerificationButton = document.getElementById('start-face-verification');
+            const biometricStatus = document.getElementById('biometric-status');
+
+            navigator.mediaDevices.getUserMedia({ video: true })
+                .then(stream => {
+                    video.srcObject = stream;
+                })
+                .catch(error => {
+                    console.error('Error accessing webcam:', error);
+                    biometricStatus.textContent = 'Error accessing webcam. Please ensure it is connected and permissions are granted.';
+                });
+
+            startFaceVerificationButton.addEventListener('click', function () {
+                startFaceVerificationButton.disabled = true;
+                biometricStatus.textContent = 'Scanning... Please wait.';
+
+                // Replace this setTimeout with the actual face verification logic
+                setTimeout(function () {
+                    const verificationSuccessful = Math.random() > 0.5; // Simulate success or failure randomly
+
+                    if (verificationSuccessful) {
+                        biometricStatus.textContent = 'Face verification successful!';
+                        setTimeout(() => {
+                            document.body.classList.add('slide-out');
+                            setTimeout(() => {
+                                window.location.href = 'timer.html'; // Replace with the actual URL for the next step
+                            }, 500); // Match this with the transition duration
+                        }, 1000); // Delay to show the success message
+                    } else {
+                        biometricStatus.textContent = 'Face verification failed. Please try again.';
+                        startFaceVerificationButton.disabled = false;
+                    }
+                }, 3000); // Simulate a 3-second face scan
+            });
+        });
+    </script>
+    <script>
+        window.history.pushState({}, '', '');
+
+        window.addEventListener('popstate', function (event) {
+            event.preventDefault();
+            alert('Error: You cannot go back to the previous tab.');
+            window.history.pushState({}, '', '');
+            window.location.href = '#'; // Add this line to prevent the browser from going back
+        });
+    </script>
+
+</body>
+
+</html>

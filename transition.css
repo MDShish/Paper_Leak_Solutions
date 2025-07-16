@@ -1,0 +1,12 @@
+/* transition.css */
+body {
+    transition: transform 0.5s ease-in-out;
+}
+
+body.slide-in {
+    transform: translateX(100%);
+}
+
+body.slide-out {
+    transform: translateX(0);
+}
